@@ -3,6 +3,8 @@
 const selectElement = document.querySelector('.js-select');
 const btn = document.querySelector('.js-btn');
 const textElement = document.querySelector('.js-text');
+const puntuacElement = document.querySelector('.js-puntuaciones');
+const boardElement = document.querySelector('.js-board');
 
 const RazaBondadosa = {
     raza1 : 1,
@@ -26,7 +28,7 @@ function getRandomNumber(max){
 
 function asignaRaza() {
     const randonNumber = getRandomNumber(6);
-    console.log(randonNumber);
+    // console.log(randonNumber);
     let fuerzaMalvada = '';
     if (randonNumber === 1){
         fuerzaMalvada = RazaMalvada.raza1
@@ -72,9 +74,25 @@ function batalla(){
     }
 }
 
+let jugador = 0;
+let ordenador = 0;
+
+function contador(){
+    const bondadosos = RazaBondadosaValor();
+    const malvados = asignaRaza();
+        if (bondadosos > malvados){
+            jugador++;
+         } else if (bondadosos < malvados){
+            ordenador++;
+    }
+  boardElement.innerHTML = `Jugador:${jugador}  Ordenador:${ordenador}`;
+}
+
+
 function handleClick(event) {
 event.preventDefault();
 batalla();
+contador();
 }
 
 btn.addEventListener('click', handleClick);
