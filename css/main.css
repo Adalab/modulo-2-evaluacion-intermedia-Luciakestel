@@ -1,10 +1,10 @@
 * {
-    
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .title {
-    color: red;
+    color: #7B241C;
     text-transform: uppercase;
 }
 .select {
@@ -12,16 +12,24 @@
 }
 .btn {
     padding: 10px;
-    background-color: red;
+    background-color: #7B241C;
     color: white;
+    border: none;
+    border-radius: 10px;
 }
 .text {
-    border: 2px solid black;
     width: max-content;
     padding: 10px;
-    background-color: red;
+    background-color: #7B241C;
     color: white;
+    border-radius: 10px;
 }
 .puntuaciones {
-    color: red;
+    color: #7B241C;
+}
+.section-text1{
+    font-weight: bold;
+}
+.span{
+    text-transform: capitalize;
 }

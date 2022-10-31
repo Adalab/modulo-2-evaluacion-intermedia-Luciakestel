@@ -84,6 +84,9 @@ function contador(){
             jugador++;
          } else if (bondadosos < malvados){
             ordenador++;
+    } else {
+        jugador;
+        ordenador;
     }
   boardElement.innerHTML = `Jugador:${jugador}  Ordenador:${ordenador}`;
 }
