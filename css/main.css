@@ -1,35 +1,39 @@
 * {
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .title {
-    color: #7B241C;
-    text-transform: uppercase;
+  color: #7b241c;
+  text-transform: uppercase;
 }
 .select {
-    padding: 5px;
+  padding: 5px;
 }
 .btn {
-    padding: 10px;
-    background-color: #7B241C;
-    color: white;
-    border: none;
-    border-radius: 10px;
+  padding: 10px;
+  background-color: #7b241c;
+  color: white;
+  border: none;
+  border-radius: 10px;
 }
 .text {
-    width: max-content;
-    padding: 10px;
-    background-color: #7B241C;
-    color: white;
-    border-radius: 10px;
+  width: max-content;
+  padding: 10px;
+  background-color: #7b241c;
+  color: white;
+  border-radius: 10px;
 }
 .puntuaciones {
-    color: #7B241C;
+  color: #7b241c;
 }
-.section-text1{
-    font-weight: bold;
+.section-text1 {
+  font-weight: bold;
 }
-.span{
-    text-transform: capitalize;
+.span {
+  text-transform: capitalize;
+}
+
+.collapse {
+  display: none;
 }

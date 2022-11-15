@@ -1,102 +1,117 @@
-"use strict";
+'use strict';
 
 const selectElement = document.querySelector('.js-select');
 const btn = document.querySelector('.js-btn');
 const textElement = document.querySelector('.js-text');
 const puntuacElement = document.querySelector('.js-puntuaciones');
 const boardElement = document.querySelector('.js-board');
+const btnNewGame = document.querySelector('.js_new_game');
 
-const RazaBondadosa = {
-    raza1 : 1,
-    raza2 : 2,
-    raza3 : 3,
-    raza4 : 4,
-    raza5 : 5
+const kindRace = {
+  race1: 1,
+  race2: 2,
+  race3: 3,
+  race4: 4,
+  race5: 5,
 };
-const RazaMalvada = {
-    raza1 : 2,
-    raza2 : 2,
-    raza3 : 2,
-    raza4 : 3,
-    raza5 : 5,
-    raza6 : 0
+const evilRace = {
+  race1: 2,
+  race2: 2,
+  race3: 2,
+  race4: 3,
+  race5: 5,
 };
 
-function getRandomNumber(max){
-    return Math.ceil(Math.random() * max);
+let player = 0;
+let pc = 0;
+let moves = 0;
+
+function getRandomNumber(max) {
+  return Math.ceil(Math.random() * max);
 }
 
-function asignaRaza() {
-    const randonNumber = getRandomNumber(6);
-    // console.log(randonNumber);
-    let fuerzaMalvada = '';
-    if (randonNumber === 1){
-        fuerzaMalvada = RazaMalvada.raza1
-    } else if (randonNumber === 2){
-        fuerzaMalvada = RazaMalvada.raza2
-    } else if (randonNumber === 3){
-        fuerzaMalvada = RazaMalvada.raza3
-    }else if (randonNumber === 4){
-        fuerzaMalvada = RazaMalvada.raza4
-    } else if (randonNumber === 5) {
-        fuerzaMalvada = RazaMalvada.raza5
-    } else {
-        fuerzaMalvada = RazaMalvada.raza6
-    }
-    return fuerzaMalvada;
+function assignRace() {
+  const randonNumber = getRandomNumber(5);
+  let strengthEvil = 0;
+  if (randonNumber === 1) {
+    strengthEvil = evilRace.race1;
+  } else if (randonNumber === 2) {
+    strengthEvil = evilRace.race2;
+  } else if (randonNumber === 3) {
+    strengthEvil = evilRace.race3;
+  } else if (randonNumber === 4) {
+    strengthEvil = evilRace.race4;
+  } else {
+    strengthEvil = evilRace.race5;
+  }
+  return strengthEvil;
 }
 
-function RazaBondadosaValor() {
-    const selectValue = selectElement.value;
-   let fuerzaBuena =  '';
-   if (selectValue === 'Pelosos con fuerza'){
-    fuerzaBuena = RazaBondadosa.raza1
-} else if (selectValue === 'Sureños buenos con fuerza'){
-    fuerzaBuena = RazaBondadosa.raza2
-} else if (selectValue === 'Enanos con fuerza'){
-    fuerzaBuena = RazaBondadosa.raza3
-}else if (selectValue === 'Númenóreanos con fuerza'){
-    fuerzaBuena = RazaBondadosa.raza4
-} else{
-    fuerzaBuena = RazaBondadosa.raza5
-} 
-return fuerzaBuena;
+function kindRaceValue() {
+  const selectValue = selectElement.value;
+  let strengthKind = '';
+  if (selectValue === 'Pelosos con fuerza') {
+    strengthKind = kindRace.race1;
+  } else if (selectValue === 'Sureños buenos con fuerza') {
+    strengthKind = kindRace.race2;
+  } else if (selectValue === 'Enanos con fuerza') {
+    strengthKind = kindRace.race3;
+  } else if (selectValue === 'Númenóreanos con fuerza') {
+    strengthKind = kindRace.race4;
+  } else {
+    strengthKind = kindRace.race5;
+  }
+  return strengthKind;
 }
-function batalla(){
-    const bondadosos = RazaBondadosaValor();
-    const malvados = asignaRaza();
-    if (bondadosos > malvados) {
-        textElement.innerHTML = `Ha ganado el Éjercito del Bien! Enhorabuena`;
-    } else if (bondadosos < malvados) {
-        textElement.innerHTML = `Ha ganado el Éjercito del Mal! Vuelve a intentarlo`;
-    } else if (bondadosos === malvados) {
-        textElement.innerHTML = `Empate`;
-    }
-}
-
-let jugador = 0;
-let ordenador = 0;
-
-function contador(){
-    const bondadosos = RazaBondadosaValor();
-    const malvados = asignaRaza();
-        if (bondadosos > malvados){
-            jugador++;
-         } else if (bondadosos < malvados){
-            ordenador++;
-    } else {
-        jugador;
-        ordenador;
-    }
-  boardElement.innerHTML = `Jugador:${jugador}  Ordenador:${ordenador}`;
+function battle() {
+  const kind = kindRaceValue();
+  const evil = assignRace();
+  if (kind > evil) {
+    textElement.innerHTML = `Ha ganado el Éjercito del Bien! Enhorabuena`;
+    player++;
+  } else if (kind < evil) {
+    textElement.innerHTML = `Ha ganado el Éjercito del Mal! Vuelve a intentarlo`;
+    pc++;
+  } else if (kind === evil) {
+    textElement.innerHTML = `Empate`;
+  }
+  boardElement.innerHTML = `Jugador:${player}  Ordenador:${pc}`;
 }
 
+
+
+function counter() {
+  moves++;
+  if (moves === 10){
+    btn.classList.add('collapse');
+    btnNewGame.classList.remove('collapse');
+  } 
+  if (player > pc) {
+    textElement.innerHTML = 'Has ganado el juego!';
+  } else if (player < pc) {
+    textElement.innerHTML = 'El ordenador ha ganado el juego!';
+  } else {
+    textElement.innerHTML = 'Empate!';
+  }
+  
+}
+
+function newGame(event){
+    event.preventDefault();
+    btn.classList.remove('collapse');
+    btnNewGame.classList.add('collapse');
+    pc = 0;
+    player = 0;
+    moves = 0;
+    boardElement.innerHTML = `Jugador:${player}  Ordenador:${pc}`;
+    textElement.innerHTML = 'Comienza la batalla!';
+}
 
 function handleClick(event) {
-event.preventDefault();
-batalla();
-contador();
+  event.preventDefault();
+  battle();
+  counter();
 }
 
 btn.addEventListener('click', handleClick);
-
+btnNewGame.addEventListener(('click'), newGame);
